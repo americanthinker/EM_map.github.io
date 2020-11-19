@@ -6,6 +6,9 @@ def punc_removal(bag_of_words):
     '''
     punc = "#$!%^&*()@-=_+]/[}{\|;':,./<>?`~\""
     for symbol in punc:
-        bag_of_words = bag_of_words.replace(symbol, '').replace('    ', ' ').replace('   ', ' ').replace('  ', ' ')
+        bag_of_words = bag_of_words.replace(symbol, '').replace('    ', ' ')\
+                       .replace('   ', ' ').replace('  ', ' ')
     return bag_of_words
 
+if __name__ == '__main__':
+    print(punc_removal('!@#$%^&R890&*'))
