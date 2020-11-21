@@ -9,12 +9,6 @@ import pandas as pd
 external_stylesheets = ['https://codepen.io/anon/pen/mardKv.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-theme =  {
-    'dark': True,
-    'detail': '#007439',
-    'primary': '#00EA64',
-    'secondary': '#6E6E6E',
-}
 #Step 2. Import Data
 vets = pd.read_csv('vets_coords.csv')
 merged = pd.read_csv('merged_df_dash.csv')
@@ -102,7 +96,8 @@ def update_map(branch_name):
     df = merged[merged['Branch'].isin(list(branch_name))]
 
     grouped = df.groupby(['CityState', 'latitude', 'longitude'])['Id'].count().reset_index()
-    grouped['Scale'] = scaler(grouped['Id'], 25, 6)
+    print(grouped.head(20))
+    grouped['Scale'] = scaler(grouped['Id'], 25, 2)
 
     #update new figure
     fig = go.Figure(data=go.Scattergeo(
